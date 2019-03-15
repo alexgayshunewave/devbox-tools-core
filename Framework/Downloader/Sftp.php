@@ -25,10 +25,10 @@ class Sftp implements DownloaderInterface
         }
 
         $host = $options['source_host'];
-        $port = $options['source_port'] ?? self::DEFAULT_PORT;
-        $timeout = $options['source_timeout'] ?? self::DEFAULT_TIMEOUT;
-        $login = $options['source_login'] ?? '';
-        $password = $options['source_password'] ?? '';
+        $port = $options['source_port'] ? $options['source_port'] : self::DEFAULT_PORT;
+        $timeout = $options['source_timeout'] ? $options['source_timeout'] : self::DEFAULT_TIMEOUT;
+        $login = $options['source_login'] ? $options['source_login'] : '';
+        $password = $options['source_password'] ? $options['source_password'] : '';
 
         $sftp = new SftpLib($host, $port, $timeout);
         if (!$sftp->login($login, $password)) {
